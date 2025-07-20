@@ -1,12 +1,121 @@
 ﻿<Window x:Class="SE185005LeCongMinhQuanLab2.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SE185005LeCongMinhQuanLab2"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="FUMiniHotel System" Height="500" Width="850"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
+    <Window.Resources>
+        <!-- Style Luxury Button -->
+        <Style x:Key="LuxuryButtonStyle" TargetType="Button">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Margin" Value="0,5"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Background" Value="#D4AF37"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="10"
+                                Background="{TemplateBinding Background}"
+                                SnapsToDevicePixels="True">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect BlurRadius="4" ShadowDepth="2" Color="Black" Opacity="0.3"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
+        <!-- Style Customer Button -->
+        <Style x:Key="CustomerButtonStyle" TargetType="Button" BasedOn="{StaticResource LuxuryButtonStyle}">
+            <Setter Property="Background" Value="#A8DADC"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="13*"/>
+            <ColumnDefinition Width="257*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="143*"/>
+        </Grid.RowDefinitions>
+        <!-- Background image -->
+        <Image Stretch="Fill" Opacity="1.0" Panel.ZIndex="0" Grid.RowSpan="2" Grid.ColumnSpan="2">
+            <Image.Source>
+                <BitmapImage UriSource="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2a/30/94/cb/monalisa-luxury-hotel.jpg?w=1400&amp;h=800&amp;s=1"/>
+            </Image.Source>
+        </Image>
+
+        <!-- Overlay layer -->
+        <Rectangle Fill="White" Opacity="0.15" Panel.ZIndex="1" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+
+        <!-- Sidebar with functions -->
+        <Border Background="#FFFFFFCC" 
+                CornerRadius="15"
+                Padding="15"
+                Width="347"
+                Panel.ZIndex="2"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top" Grid.RowSpan="2" Grid.Column="1" Margin="173.5,0,0,0">
+            <StackPanel>
+                <!-- Luxury Title -->
+                <TextBlock Text="FUMiniHotel System"
+                           FontSize="26"
+                           FontWeight="Bold"
+                           FontFamily="Georgia"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,20">
+                    <TextBlock.Foreground>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="#D4AF37" Offset="0.0"/>
+                            <GradientStop Color="#FFF8DC" Offset="0.5"/>
+                            <GradientStop Color="#B8860B" Offset="1.0"/>
+                        </LinearGradientBrush>
+                    </TextBlock.Foreground>
+                    <TextBlock.Effect>
+                        <DropShadowEffect BlurRadius="4" ShadowDepth="1" Color="Black" Opacity="0.6"/>
+                    </TextBlock.Effect>
+                </TextBlock>
+
+                <!-- Admin Buttons -->
+                <Button x:Name="btnManageCustomers"
+                        Content="Quản lý khách hàng"
+                        Style="{StaticResource LuxuryButtonStyle}" Click="btnManageCustomers_Click"
+                        Visibility="Collapsed"/>
+
+                <Button x:Name="btnManageRooms"
+                        Content="Quản lý phòng"
+                        Style="{StaticResource LuxuryButtonStyle}" Click="btnManageRooms_Click"
+                        Visibility="Collapsed"/>
+
+                <Button x:Name="btnManageBookings"
+                        Content="Quản lý đặt phòng"
+                        Style="{StaticResource LuxuryButtonStyle}" Click="btnManageBookings_Click"
+                        Visibility="Collapsed"/>
+
+                <Button x:Name="btnStatistics"
+                        Content="Thống kê báo cáo"
+                        Style="{StaticResource LuxuryButtonStyle}" Click="btnStatistics_Click"
+                        Visibility="Collapsed"/>
+
+                <!-- Customer Buttons -->
+                <Button x:Name="btnProfile"
+                        Content="Thông tin cá nhân"
+                        Style="{StaticResource CustomerButtonStyle}" Click="btnProfile_Click"
+                        Visibility="Collapsed"/>
+
+                <Button x:Name="btnBookingHistory"
+                        Content="Lịch sử đặt phòng"
+                        Style="{StaticResource CustomerButtonStyle}" Click="btnBookingHistory_Click"
+                        Visibility="Collapsed"/>
+            </StackPanel>
+        </Border>
     </Grid>
 </Window>

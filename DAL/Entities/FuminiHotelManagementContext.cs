@@ -38,11 +38,11 @@ public partial class FuminiHotelManagementContext : DbContext
     public (string Email, string Password) GetAdminCredentials()
     {
         IConfiguration config = new ConfigurationBuilder()
-            .SetBasePath(AppContext.BaseDirectory)
+            .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
             .AddJsonFile("appsettings.json", true, true)
             .Build();
-        var email = config["AdminCredentials:Email"];
-        var password = config["AdminCredentials:Password"];
+        var email = config["AdminAccount:Email"];
+        var password = config["AdminAccount:Password"];
         return (email, password);
     }
 
